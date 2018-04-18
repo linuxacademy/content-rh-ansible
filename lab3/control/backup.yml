@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+    - name: backup scripts
+      archive:
+        dest: /mnt/backup_vol/{{ ansible_hostname }}/scripts.tgz
+        path: {{ script_files }}
+
+- hosts: webservers
+  tasks:
+    - name: backup httpd configs
+      archive:
+        dest: /mnt/backup_vol/{{ ansible_hostname }}/httpd_configs.tgz
+        path: {{ httpd_configs }}
+    - name: backup webroot
+      archive:
+        dest: /mnt/backup_vol/{{ ansible_hostname }}/httpd_webroot.tgz
+        path: {{ httpd_webroot }}
+
+- hosts: media
+  tasks:
+    - name: backup media content
+      archive:
+        dest: /mnt/backup_vol/{{ ansible_hostname }}/media_content.tgz
+        path: {{ media_content }}
+    - name: backup media index
+      archive:
+        dest: /mnt/backup_vol/{{ ansible_hostname }}/media_index.tgz
+        path: {{ media_index }}
+

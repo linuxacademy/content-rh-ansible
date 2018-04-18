@@ -1,0 +1,5 @@
+# Please create the the below users on all hosts in dbservers as well as on the host 'jump'
+# You will find a pregenerated key pair for each user in /home/ansible/keys
+
+consultant
+supervisor
