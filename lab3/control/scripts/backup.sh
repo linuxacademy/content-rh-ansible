@@ -6,4 +6,15 @@
 # hostvar to test host var
 # use playbook tags maybe?
 
-ansible-playbook -i /home/ansible/inventory /home/ansible/backup.yml
+case "$1" in
+  mediavars)
+
+    ;;
+  webservervars)
+
+    ;;
+  hostvar)
+
+    ;;
+  *)
+    ansible-playbook -i /home/ansible/inventory /home/ansible/backup.yml
