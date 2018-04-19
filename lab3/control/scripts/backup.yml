@@ -1,34 +1,40 @@
 ---
 - hosts: web1
+  gather_facts: false
+  become: yes
   tasks:
     - name: backup scripts
       archive:
         dest: /mnt/backup_vol/{{ ansible_hostname }}/scripts.tgz
-        path: {{ script_files }}
-        tags: hostvar
+        path: "{{ script_files }}"
+      tags: hostvar
 
 - hosts: webservers
+  gather_facts: false
+  become: yes
   tasks:
     - name: backup httpd configs
       archive:
         dest: /mnt/backup_vol/{{ ansible_hostname }}/httpd_configs.tgz
-        path: {{ httpd_configs }}
-        tags: webservervars
+        path: "{{ httpd_configs }}"
+      tags: webservervars
     - name: backup webroot
       archive:
         dest: /mnt/backup_vol/{{ ansible_hostname }}/httpd_webroot.tgz
-        path: {{ httpd_webroot }}
-        tags: webservervars
+        path: "{{ httpd_webroot }}"
+      tags: webservervars
 
 - hosts: media
+  gather_facts: false
+  become: yes
   tasks:
     - name: backup media content
       archive:
         dest: /mnt/backup_vol/{{ ansible_hostname }}/media_content.tgz
-        path: {{ media_content }}
-        tags: mediavars
+        path: "{{ media_content }}"
+      tags: mediavars
     - name: backup media index
       archive:
         dest: /mnt/backup_vol/{{ ansible_hostname }}/media_index.tgz
-        path: {{ media_index }}
-        tags: mediavars
+        path: "{{ media_index }}"
+      tags: mediavars
