@@ -1,0 +1,11 @@
+# don't include audio clips, videos or camtasia projects
+*.m4a
+*.mp4
+*.tscproj
+*.m4v
+
+# don't include temp files
+~$*
+
+# Ignore zip files
+*.zip
