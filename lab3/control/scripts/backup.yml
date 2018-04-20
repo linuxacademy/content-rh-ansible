@@ -1,6 +1,16 @@
 ---
+- hosts: all
+  become: yes
+  tasks:
+    - name: create backup directories
+      file:
+        path: /mnt/backup_vol/{{ ansible_hostname }}
+        state: directory
+      tags:
+        - hostvar
+        - webservervars
+        - mediavars
 - hosts: web1
-  gather_facts: false
   become: yes
   tasks:
     - name: backup scripts
@@ -10,13 +20,12 @@
       tags: hostvar
 
 - hosts: webservers
-  gather_facts: false
   become: yes
   tasks:
     - name: backup httpd configs
       archive:
         dest: /mnt/backup_vol/{{ ansible_hostname }}/httpd_configs.tgz
-        path: "{{ httpd_configs }}"
+        path: "{{ httpd_config }}"
       tags: webservervars
     - name: backup webroot
       archive:
@@ -25,7 +34,6 @@
       tags: webservervars
 
 - hosts: media
-  gather_facts: false
   become: yes
   tasks:
     - name: backup media content
