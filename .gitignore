@@ -9,3 +9,6 @@
 
 # Ignore zip files
 *.zip
+
+# Ignore manually versioned stuff
+*.v*.*
