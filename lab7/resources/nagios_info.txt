@@ -1,0 +1,9 @@
+## For the sake of the exercise, you only need to install nrpe and
+## add a local host entry for "nagios.exmaple.com" pointing to the
+## specficied IP.  There is no need to do any further nagios configuration.
+
+## Install the nrpe package "nrpe.x86_64" in the baseline role.
+## You will find it in the EPEL repo which has been configured for you.
+
+## The nagios Server IP should be set in the host file as follows:
+
