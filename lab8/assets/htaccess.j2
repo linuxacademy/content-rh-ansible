@@ -1,0 +1,7 @@
+AuthUserFile /var/www/html/secure/.passwdfile
+AuthGroupFile /dev/null
+AuthName "Who sent you"
+AuthType Basic
+require valid-user
+require user {{ secure_user }}
+

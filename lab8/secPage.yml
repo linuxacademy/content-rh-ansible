@@ -1,0 +1,33 @@
+---
+- hosts: webservers
+  become: yes
+  vars_files: 
+    - /home/ansible/secret
+  tasks:
+  - name: install apache
+    yum: name=httpd state=latest
+  - name: configure httpd as necessary
+    template:
+      src: /home/ansible/assets/httpd.conf.j2
+      dest: /etc/httpd/conf/httpd.conf
+  - name: create secure directory
+    file: state=directory path=/var/www/html/secure mode=0755
+  - name: deploy htaccess file
+    template:
+      src: /home/ansible/assets/htaccess.j2
+      dest: /var/www/html/secure/.htaccess
+  - name: make sure passlib is installed for htpasswd module
+    yum: name=python-passlib state=latest
+  - name: create users for basic auth
+    htpasswd:
+      path: /var/www/html/secure/.passwdfile
+      name: "{{ secure_user }}"
+      password: "{{ secure_password }}"
+      crypt_scheme: md5_crypt
+  - name: start and enable apache
+    service: name=httpd state=started enabled=yes
+  - name: install secure files
+    copy:
+      src: /home/ansible/assets/classified.html
+      dest: /var/www/html/secure/classified.html
+
