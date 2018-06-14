@@ -1,0 +1,12 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+    - name: create file
+      file:
+        state: touch
+        name: /var/www/html/facts.htm
+    - name: add line to file containing facts
+      lineinfile:
+        path: /var/www/html/facts.htm
+        line: "{{ ansible_distribution }}: {{ ansible_default_ipv4['address'] }} {{ ansible_default_ipv4['macaddress'] }} "
