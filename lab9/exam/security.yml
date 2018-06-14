@@ -1,8 +1,12 @@
 --- # use /home/ansible/exam/secure vault to print secret word on localhost
-- host: localhost
+- hosts: localhost
   vars_files:
     - /home/ansible/exam/secure
-  task:
+  tasks:
+    - name: create classified file
+      file:
+        state: touch
+        name: /mnt/classified
     - name: insert secret text into file
       lineinfile:
         path: /mnt/classified
