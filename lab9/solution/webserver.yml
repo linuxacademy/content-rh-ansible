@@ -1,0 +1,16 @@
+---
+- hosts: web
+  become: yes
+  roles:
+    - /home/ansible/exam/roles/httpdServer
+  tasks:
+    - name: create index file with hostname
+      copy:
+        content: "{{ ansible_hostname }}"
+        dest: /var/www/html/index.html
+    - name: update log level
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: "LogLevel.*$"
+        replace: "LogLevel error"
+      notify: "restart httpd"

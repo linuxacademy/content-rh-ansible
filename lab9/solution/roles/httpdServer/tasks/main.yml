@@ -1,0 +1,15 @@
+---
+# tasks file for /home/ansible/exam/roles/httpdServer
+
+- yum:
+    state: latest
+    name: httpd
+
+- template:
+    src: /home/ansible/files/httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+
+- service:
+    name: httpd
+    state: started
+    enabled: yes

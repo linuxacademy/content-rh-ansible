@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  tasks:
+    - name: install role
+      shell: "ansible-galaxy -p /home/ansible/exam/roles/ install MindPointGroup.RHEL7-STIG"
