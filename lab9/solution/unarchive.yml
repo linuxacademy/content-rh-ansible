@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: download files.tgz
+    get_url:
+      url: http://files.example.com/files.tgz
+      dest: /mnt/files.tgz
+  - name: unarchive files.tgz
+    unarchive:
+      src: /mnt/files.tgz
+      dest: /mnt/

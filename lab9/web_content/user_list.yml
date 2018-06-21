@@ -1,4 +1,8 @@
-staff
+user_groups:
+  - staff
+  - students
+  - faculty
+staff:
   - john
   - henery
   - amanda
@@ -12,7 +16,7 @@ staff
   - emily
   - jack
   - aaron
-students
+students:
   - frank
   - karen
   - alexa
@@ -35,7 +39,7 @@ students
   - mac
   - ned
   - lisa
-faculty
+faculty:
   - zach
   - yancy
   - walter
