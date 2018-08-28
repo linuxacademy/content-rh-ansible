@@ -1,4 +1,4 @@
-# Please create the the below users on all hosts in dbservers
+# Please create the the below users on all hosts in dbsystems
 # You will find a pregenerated key pair and an authorized key file for each user in /home/ansible/keys
 
 # User accounts to create:
